@@ -1,0 +1,91 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Watcher App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .menu button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to Ad Watcher</h1>
+    <p>Coins: <span id="coin-count">0</span></p>
+    
+    <!-- Banner Ad -->
+    <div id="banner-ad">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5368279864643343"
+             data-ad-slot="4765662006"
+             data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <!-- Start Watching Ad Button -->
+    <button class="button" id="watch-ad" onclick="showInterstitialAd()">Start Watching Ad</button>
+
+    <!-- Menu with Withdraw Button -->
+    <div class="menu">
+        <button onclick="withdraw()">Withdraw</button>
+    </div>
+
+    <!-- Interstitial Ad Trigger Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        let coins = 0;
+
+        // Function to show the Interstitial Ad
+        function showInterstitialAd() {
+            // Trigger the Interstitial Ad
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client: "ca-pub-5368279864643343",
+                google_ad_slot: "2685491245",
+                google_ad_width: 300,
+                google_ad_height: 250,
+                onAdLoaded: function() {
+                    // This function is called when the ad is successfully loaded
+                    coins++; // Increase coin count only after ad loads
+                    document.getElementById("coin-count").innerText = coins;
+                    alert("Ad watched successfully! Your coins: " + coins);
+                },
+                onAdFailedToLoad: function() {
+                    // This function is called if the ad fails to load
+                    alert("Failed to load ad. Please try again later.");
+                }
+            });
+        }
+
+        // Function for Withdraw (display message for 4-6 months delay)
+        function withdraw() {
+            alert("Withdrawals are available after 4-6 months.");
+        }
+    </script>
+
+</body>
+</html>
